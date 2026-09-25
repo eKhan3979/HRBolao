@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HRBolao.cvwJogo">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="42"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="2"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="36"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="2"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.RowSpan="21" Grid.Column="0" Grid.ColumnSpan="9"
+                Stroke="{StaticResource gcorHRFundo}"
+                StrokeThickness="2" StrokeShape="10"
+                BackgroundColor="{StaticResource gcorLbJogoFundo}"/>
+
+        <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="9"
+                Stroke="{StaticResource gcorHRFundo}" StrokeThickness="2"
+                StrokeShape="8" BackgroundColor="{StaticResource gcorTituloFundo}">
+            <Label Text="{Binding Path=TituloJogo}" Style="{StaticResource gstyLbTitulo}"/>
+        </Border>
+
+        <Label Grid.Row="5" Grid.Column="2" Text="{Binding Path=JogoAposta.TimeCasa}"
+               Style="{StaticResource gstyLbJogo}"/>
+        <Border Grid.Row="5" Grid.Column="4" Stroke="{StaticResource gcorBorder}"
+                Background="White">
+            <Label x:Name="lblGolsTimeCasa" 
+                   Style="{StaticResource gstyLbAposta}"
+                   Text="{Binding Path=JogoAposta.GolsTimeCasa}"/>
+        </Border>
+        <Stepper x:Name="stpGolsTimeCasa" Grid.Row="5" Grid.Column="6"
+                 Value="{Binding Path=JogoAposta.GolsTimeCasa}" 
+                 Minimum="0" Maximum="12"
+                 IsEnabled="{Binding Path=Editavel}"/>
+
+        <Label Grid.Row="7" Grid.Column="2" Text="{Binding Path=JogoAposta.TimeVisitante}"
+               Style="{StaticResource gstyLbJogo}"/>
+        <Border Grid.Row="7" Grid.Column="4" Stroke="{StaticResource gcorBorder}"
+                Background="White">
+            <Label x:Name="lblGolsTimeVisitante" 
+                   Style="{StaticResource gstyLbAposta}"
+                   Text="{Binding Path=JogoAposta.GolsTimeVisitante}"/>
+        </Border>
+        <Stepper x:Name="stpGolsTimeVisitante" Grid.Row="7" Grid.Column="6"
+                 Value="{Binding Path=JogoAposta.GolsTimeVisitante}"
+                 Minimum="0" Maximum="12"
+                 IsEnabled="{Binding Path=Editavel}"/>
+
+        <Label Grid.Row="9" Grid.Column="2" Text="Com prorrogação ?"
+               Style="{StaticResource gstyLbJogo}"/>
+        <CheckBox x:Name="chkProrrogacao" Grid.Row="9" Grid.Column="4"
+                  IsChecked="{Binding Path=Prorrogacao}"
+                  IsEnabled="{Binding Path=Editavel}"/>
+
+        <Label Grid.Row="11" Grid.Column="2" Text="Com disputa de penaltis ?"
+               Style="{StaticResource gstyLbJogo}"/>
+        <CheckBox x:Name="chkDisputaPenaltis" Grid.Row="11" Grid.Column="4"
+                  IsChecked="{Binding Path=DisputaPenaltis}"
+                  IsEnabled="{Binding Path=Editavel}"/>
+
+        <Label Grid.Row="13" Grid.Column="2" Text="{Binding Path=JogoAposta.TimeCasa}"
+               Style="{StaticResource gstyLbJogo}"/>
+        <Border Grid.Row="13" Grid.Column="4" Stroke="{StaticResource gcorBorder}"
+                Background="White">
+            <Label x:Name="lblPenaltisTimeCasa" 
+                   Style="{StaticResource gstyLbAposta}"
+                   Text="{Binding Path=JogoAposta.PenaltisTimeCasa}"/>
+        </Border>
+        <Stepper x:Name="stpPenaltisTimeCasa" Grid.Row="13" Grid.Column="6"
+                 Value="{Binding Path=JogoAposta.PenaltisTimeCasa}"
+                 Minimum="0" Maximum="21"
+                 IsEnabled="{Binding Path=Editavel}"/>
+
+        <Label Grid.Row="15" Grid.Column="2" Text="{Binding Path=JogoAposta.TimeVisitante}"
+               Style="{StaticResource gstyLbJogo}"/>
+        <Border Grid.Row="15" Grid.Column="4" Stroke="{StaticResource gcorBorder}"
+                Background="White">
+            <Label x:Name="lblPenaltisTimeVisitante" 
+                   Style="{StaticResource gstyLbAposta}"
+                   Text="{Binding Path=JogoAposta.PenaltisTimeVisitante}"/>
+        </Border>
+        <Stepper x:Name="stpPenaltisTimeVisitante" Grid.Row="15" Grid.Column="6"
+                 Value="{Binding Path=JogoAposta.PenaltisTimeVisitante}"
+                 Minimum="0" Maximum="21"
+                 IsEnabled="{Binding Path=Editavel}"/>
+
+        <Grid Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnVoltar" Grid.Row="0" Grid.Column="1" 
+                    Text="Voltar" Clicked="btnVoltar_Clicked"
+                    FontAttributes="Bold"
+                    Background="{StaticResource gcorTituloFundo}"/>
+            <Button x:Name="btnSalvar" Grid.Row="0" Grid.Column="3"
+                    Text="Salvar" Clicked="btnSalvar_Clicked"
+                    FontAttributes="Bold"
+                    Background="{StaticResource gcorTituloFundo}"
+                    IsVisible="{Binding Path=Editavel}"/>
+        </Grid>
+
+    </Grid>
+</ContentView>

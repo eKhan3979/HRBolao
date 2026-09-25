@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../HRBolao.Model/HRBolao.Model.csproj" />
+  <Project Path="../HRBolao.Regra/HRBolao.Regra.csproj" />
+  <Project Path="../HRBolao.Servico/HRBolao.Servico.csproj" />
+  <Project Path="../HRBolao.ViewModel/HRBolao.ViewModel.csproj" />
+  <Project Path="HRBolao.Manager.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>

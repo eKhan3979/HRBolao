@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HRBolao.cvwApostasDetalhes">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="ibnVoltar" Grid.Row="0" Grid.Column="0"
+                ImageSource="ic_back.png" Clicked="ibnVoltar_Clicked"
+                BackgroundColor="{StaticResource gcorHRFundo}"
+                BorderColor="{StaticResource gcorHRFundo}"
+                CornerRadius="10"
+                Text="Voltar" FontAttributes="Bold"
+                MaximumWidthRequest="100" MaximumHeightRequest="36" HorizontalOptions="Start"/>
+
+        <HorizontalStackLayout Grid.Row="2" Grid.Column="0" Margin="12,10,0,5">
+            <Label Style="{StaticResource gstyLbJogo}" FontSize="16" Text="Apostas de "/>
+            <Label Style="{StaticResource gstyLbJogo}" FontAttributes="Bold" Text="{Binding Path=JogadorDetalheNome}"/>
+        </HorizontalStackLayout>
+        
+        <CollectionView x:Name="clvLista" Grid.Row="4" Grid.Column="0"
+                        ItemsSource="{Binding Path=ListaPontosDetalhes}"
+                        SelectionMode="Single"
+                        Margin="-3,0,0,0">
+            <CollectionView.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="184"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="62"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Nº" Style="{StaticResource gstyLbJogo}"
+                           HorizontalOptions="Center" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="Time Mandante" Style="{StaticResource gstyLbJogo}"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="Time Visitante" Style="{StaticResource gstyLbJogo}"/>
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="grdTemplate" Padding="2,2,2,2" Margin="0,0,0,5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#FF8A26D9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="4"
+                                BackgroundColor="{StaticResource gcorLbJogoFundo}"
+                                Stroke="{StaticResource gcorHRFundo}" StrokeThickness="2"
+                                StrokeShape="5"/>
+
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="4"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Path=Numero}"
+                                   Style="{StaticResource gstyLbJogo}" HorizontalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding Path=TimeCasa}"
+                                   Style="{StaticResource gstyLbJogo}" HorizontalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="3" Text="{Binding Path=GolsCasaAposta}"
+                                   Style="{StaticResource gstyLbJogo}" HorizontalOptions="End"/>
+                            <Label Grid.Row="0" Grid.Column="4" Text="x"
+                                   Style="{StaticResource gstyLbJogo}" HorizontalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="5" Text="{Binding Path=GolsVisitanteAposta}"
+                                   Style="{StaticResource gstyLbJogo}" HorizontalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="6" Text="{Binding Path=TimeVisitante}"
+                                   Style="{StaticResource gstyLbJogo}" HorizontalOptions="Start"/>
+                            <Label Grid.Row="0" Grid.Column="7" Text="{Binding Path=Pontos}" Style="{StaticResource gstyLbJogo}"
+                                    HorizontalOptions="End"/>
+                            <Label Grid.Row="0" Grid.Column="8" Text="  pts." Style="{StaticResource gstyLbJogo}"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentView>

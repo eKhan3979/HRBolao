@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HRBolao.cpgLogin"
+             Title="">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="1"
+               Source="hr_logo.png" HeightRequest="80"
+               Margin="10,0,0,0"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5"
+                   Text="Bolão" TextColor="#FF4A0D79"
+                   Style="{StaticResource Headline}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"/>
+
+            <!--
+            <Label Grid.Row="2" Grid.Column="1" Text="Empresa: " Style="{StaticResource gstyLbLogin}"
+                   HorizontalTextAlignment="End"/>
+            <Picker x:Name="pckEmpresa" Grid.Row="2" Grid.Column="3"
+                    ItemsSource="{Binding Path=ListaEmpresas}"
+                    SelectedItem="{Binding Path=EmpresaSelecionada}"
+                    ItemDisplayBinding="{Binding Path=NomeEmpresa}"/>
+            -->
+
+            <Label Grid.Row="2" Grid.Column="1" Text=" e-mail: " Style="{StaticResource gstyLbLogin}"
+                   HorizontalTextAlignment="End"/>
+            <Entry x:Name="edtEmail" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"
+                   Text="{Binding Path=JogadorLogin.email}"
+                   MaxLength="250"/>
+
+            <Label Grid.Row="4" Grid.Column="1" Text=" Senha: " Style="{StaticResource gstyLbLogin}"
+                   HorizontalTextAlignment="End"/>
+            <Entry x:Name="edtSenha" Grid.Row="4" Grid.Column="3" MaxLength="10"
+                   Text="{Binding Path=JogadorLogin.Senha}"
+                   IsPassword="True"/>
+
+            <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4"
+                  HorizontalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnCadastro" Grid.Row="0" Grid.Column="1"
+                        Clicked="btnCadastro_Clicked" 
+                        Text="Novo jogador" CornerRadius="5"
+                        
+                        HorizontalOptions="End"/>
+                <Button x:Name="btnLogin" Grid.Row="0" Grid.Column="3"
+                        Clicked="btnLogin_Clicked" Text="Login" CornerRadius="5"
+                        WidthRequest="68"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="grdCadastro" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2"
+              IsVisible="False">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctrl="clr-namespace:HRBolao.Manager.Controles"
+             x:Class="HRBolao.Manager.Controles.cpgResultados"             
+             Title="cpgResultados">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+              ZIndex="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Grid.Column="0"
+                   Source="hr_logo.png" HeightRequest="80"
+                   Margin="0,0,0,0"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="HR: Bolão Manager"
+                   Style="{StaticResource Headline}"
+                   HorizontalOptions="End" 
+                   VerticalOptions="Center"/>
+        </Grid>
+
+        <Grid  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Campeonato: " Grid.Row="0" Grid.Column="1"
+                   Style="{StaticResource gstyLabel}"/>
+            <Picker x:Name="pckCampeonatos" Grid.Row="0" Grid.Column="3"
+                    FontFamily="Verdana" FontSize="16" FontAttributes="Bold"
+                    TextColor="{StaticResource gcorPicker}"
+                    SelectedIndexChanged="pckCampeonatos_SelectedIndexChanged"
+                    ItemsSource="{Binding Path=ListaCampeonatos}"
+                    SelectedItem="{Binding Path=CampeonatoSelecionado}"
+                    ItemDisplayBinding="{Binding Path=Nome}"/>
+
+            <Label Text="Rodada: " Grid.Row="2" Grid.Column="1" 
+                   Style="{StaticResource gstyLabel}"/>
+            <Picker x:Name="pckRodada" Grid.Row="2" Grid.Column="3"
+                    FontFamily="Verdana" FontSize="16" FontAttributes="Bold"
+                    TextColor="{StaticResource gcorPicker}"
+                    ItemsSource="{Binding Path=ListaRodadas}"
+                    ItemDisplayBinding="{Binding Path=RodadaNome}"
+                    SelectedItem="{Binding Path=RodadaSelecionada}"
+                    SelectedIndexChanged="pckRodada_SelectedIndexChanged"/>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"
+                    Style="{StaticResource gstyBorder}"/>
+        
+            <CollectionView x:Name="cvwJogos" Grid.Row="1" Grid.Column="1"
+                            ItemsSource="{Binding Path=ListaJogos}">
+                <CollectionView.Header>
+                    <Grid BackgroundColor="{StaticResource gcorTituloFundo}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="76"/>
+                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="84"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="84"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource gstyLbTitulo}"
+                               Text="Data"/>
+                        <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource gstyLbTitulo}"
+                               Text="Hora"/>
+                        <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource gstyLbTitulo}"
+                               Text="Mandante" HorizontalOptions="Start"/>
+                        <Label Grid.Row="0" Grid.Column="5" Style="{StaticResource gstyLbTitulo}"
+                               Text="x"/>
+                        <Label Grid.Row="0" Grid.Column="7" Style="{StaticResource gstyLbTitulo}"
+                               Text="Visitante" HorizontalOptions="Start"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid BackgroundColor="{Binding Path=Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="24"/>
+                                    <RowDefinition Height="10"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="76"/>
+                                    <ColumnDefinition Width="48"/>
+                                    <ColumnDefinition Width="84"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="84"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="4"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource gstyLbAposta}"
+                                       Text="{Binding Path=Dd_Mm_Yyyy}" />
+                                <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource gstyLbAposta}"
+                                       Text="{Binding Path=Hh_Mm}" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" Style="{StaticResource gstyLbApostaL}"
+                                       Text="{Binding Path=TimeCasa}" />
+                                <Label Grid.Row="1" Grid.Column="4" Style="{StaticResource gstyLbAposta}"
+                                       Text="{Binding Path=GolsTimeCasa}" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="1" Grid.Column="5" Style="{StaticResource gstyLbAposta}"
+                                       Text="x" HorizontalTextAlignment="Center" />
+                                <Label Grid.Row="1" Grid.Column="6" Style="{StaticResource gstyLbAposta}"
+                                       Text="{Binding Path=GolsTimeVisitante}" />
+                                <Label Grid.Row="0" Grid.RowSpan="3" Grid.Column="7" Style="{StaticResource gstyLbApostaL}"
+                                       Text="{Binding Path=TimeVisitante}" />
+                                <ImageButton x:Name="ibnPlacar" Grid.Row="0" Grid.RowSpan="3" Grid.Column="8"
+                                             MaximumHeightRequest="22" MaximumWidthRequest="22"
+                                             Source="football.png" Clicked="ibnPlacar_Clicked"
+                                             HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Grid x:Name="grdJogo" Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="5"
+              IsVisible="{Binding Path=VerJogo}" Opacity="0.9" BackgroundColor="#FFF0F0F0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3"
+                    Style="{StaticResource gstyBorder}"/>
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="15"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11"
+                      BackgroundColor="{StaticResource gcorHRFundo}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="Placar do Jogo" Style="{StaticResource gstyLbTitulo}"/>
+                    <ImageButton x:Name="ibnFechar" Grid.Row="0" Grid.Column="1"
+                                 Source="fechar.png"
+                                 Clicked="ibnFechar_Clicked"/>
+                </Grid>
+                
+                <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource gstyLbApostaL}"
+                       Text="{Binding Path=JogoEdit.Dd_Mm_Yyyy}"/>
+                <Label Grid.Row="2" Grid.Column="3" Style="{StaticResource gstyLbApostaL}"
+                       Text="{Binding Path=JogoEdit.Hh_Mm}"/>
+
+                <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource gstyLbApostaL}"
+                       Text="{Binding Path=JogoEdit.TimeCasa}"/>
+                
+                <ctrl:cvwMaisMenos x:Name="cmmCasa" Grid.Row="4" Grid.Column="3"
+                                   Valor="{Binding Path=JogoEdit.GolsTimeCasa}"
+                                   Min="0" Max="10" TimeDaCasa="True"
+                                   Evento_Valor="cmmCasa_Evento_Valor"
+                                   HorizontalOptions="Center"/>
+
+                <Label Grid.Row="4" Grid.Column="5" Style="{StaticResource gstyLbAposta}"
+                       Text="x"/>
+                
+                <ctrl:cvwMaisMenos x:Name="cmmVisitante" Grid.Row="4" Grid.Column="7"
+                                   Valor="{Binding Path=JogoEdit.GolsTimeVisitante}"
+                                   Min="0" Max="10" TimeDaCasa="True"
+                                   Evento_Valor="cmmVisitante_Evento_Valor"
+                                   HorizontalOptions="Center"/>
+
+                <Label Grid.Row="4" Grid.Column="9" Style="{StaticResource gstyLbApostaL}"
+                       Text="{Binding Path=JogoEdit.TimeVisitante}"/>
+
+                <HorizontalStackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
+                                       HorizontalOptions="Start">
+                    <CheckBox x:Name="chkFinalizado" IsChecked="{Binding Path=JogoEdit.Finalizado}"/>
+                    <Label Text="Finalizado" Style="{StaticResource gstyLbApostaL}"/>
+                </HorizontalStackLayout>
+
+                <ImageButton x:Name="ibnGravar" Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="4"
+                             Source="save_32.png" Clicked="ibnGravar_Clicked"
+                             MaximumHeightRequest="42" MaximumWidthRequest="42"
+                             HeightRequest="42" WidthRequest="42"
+                             HorizontalOptions="End"/>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</ContentPage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctrl="clr-namespace:HRBolao.Manager.Controles"
+             x:Class="HRBolao.Manager.Controles.cvwMaisMenos"
+             HeightRequest="24"
+             WidthRequest="78"
+             MaximumHeightRequest="28"
+             MaximumWidthRequest="78">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="18"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="24"/>
+        </Grid.ColumnDefinitions>
+
+        <ImageButton x:Name="ibnMenos" Grid.Row="0" Grid.Column="0"
+                     Source="menos.png" Clicked="ibnMenos_Clicked"
+                     BackgroundColor="{StaticResource gcorHRFundo}"
+                     BorderWidth="1" BorderColor="#FF808080"
+                     Padding="2,2,2,2"/>
+
+        <Label x:Name="lblValor" Grid.Row="0" Grid.Column="2"
+               HorizontalOptions="Center" VerticalOptions="Center"
+               Text="{Binding Path=Valor, Source={RelativeSource AncestorType={x:Type ctrl:cvwMaisMenos}}}"
+               Background="White"
+               TextColor="#FF000000" FontAttributes="Bold"
+               FontSize="18"/>
+
+        <ImageButton x:Name="ibnMais" Grid.Row="0" Grid.Column="4"
+                     Source="mais.png" Clicked="ibnMais_Clicked"
+                     BackgroundColor="{StaticResource gcorHRFundo}"
+                     BorderWidth="1" BorderColor="#FF808080"
+                     Padding="2,2,2,2"/>
+    </Grid>
+</ContentView>

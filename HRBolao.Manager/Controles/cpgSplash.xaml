@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HRBolao.Manager.Controles.cpgSplash"
+             BackgroundColor="#FF8A26D9"
+             Title="">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <Image
+                Source="hrtech_main.png"
+                Aspect="Center" />
+
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 Padding="0,60,0,180">
+                <Label
+                    Text="Bolão !"
+                    Style="{StaticResource Headline}"/>
+                <Label
+                    x:Name="lblVersao"
+                    WidthRequest="108"
+                    Text="Versão: "
+                    Padding="0,5,0,0"
+                    HorizontalTextAlignment="End"
+                    Style="{StaticResource SubHeadline}"/>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
