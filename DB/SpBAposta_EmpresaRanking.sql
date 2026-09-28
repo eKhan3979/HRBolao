@@ -1,4 +1,8 @@
-CREATE PROCEDURE u258112148_1.SpBAposta_EmpresaRanking
+Drop Procedure If Exists u258112148_1.SpBAposta_EmpresaRanking;
+
+Delimiter @@
+
+Create Procedure u258112148_1.SpBAposta_EmpresaRanking
 (
 	IdEmpresaG		Int,
 	IdCampeonatoG	Int
@@ -35,6 +39,7 @@ Begin
                     And		J.IdCampeonatoJogo				=	A.IdCampeonatoJogo
 			Where			E.IdEmpresa						=	IdEmpresaG
 					And		J.Finalizado					=	1
+					And		R.Ativo							=	1
 			Order	By		1, 2, 3;	
 
 	Declare Continue Handler For Not Found Set fim = True;
@@ -58,6 +63,7 @@ Begin
 			And			C.IdCampeonato					=	IdCampeonatoG
 	Inner	Join		u258112148_1.TbBCampeonatoJogo		G
 			On			C.IdCampeonato					=	G.IdCampeonato
+	Where				J.Ativo							=	1
 	Order	By			1;
 	
 	Open curApostas;
@@ -131,4 +137,6 @@ Begin
 	
 	Drop Temporary Table tmpRanking;
 	
-End
+End @@
+
+Delimiter ;

@@ -1,4 +1,8 @@
-CREATE PROCEDURE u258112148_Khan.SpBAposta_PontosRodada (
+Drop Procedure If Exists u258112148_1.SpBAposta_PontosRodada;
+
+Delimiter @@
+
+Create Procedure u258112148_1.SpBAposta_PontosRodada (
 	IdEmpresaG		Int,
 	IdCampeonatoG	Int,
 	Rodada			Int
@@ -32,6 +36,7 @@ Begin
 					And		C.IdCampeonato					=	IdCampeonatoG
 					And		C.Rodada						=	Rodada
 					And		C.Finalizado					=	1
+					And		J.Ativo							=	1
 			Order	By		1, 2;
 	
 	Declare Continue Handler For Not Found Set fim = True;
@@ -51,6 +56,7 @@ Begin
 				0
 	From		u258112148_1.TbBJogador
 	Where		IdEmpresa	=	IdEmpresaG
+		And		Ativo		=	1
 	Order	By	1;
 	
 	Open curApostas;
@@ -107,4 +113,7 @@ Begin
 	
 	Drop Temporary Table tmpRanking;
 	
-End
+	
+End @@
+
+Delimiter ;
