@@ -44,6 +44,34 @@ namespace HRBolao.Servico
             return lstCampeonatos;
         }
 
+        public async Task<List<CampeonatoModel>> CampeonatosLista()
+        {
+            List<CampeonatoModel> lstCampeonatos = new List<CampeonatoModel>();
+
+            try
+            {
+                string strLink = normalizaLink($"{BaseLink}campeonatos");
+
+                using (HttpClient cliente = new HttpClient())
+                {
+                    var retorno = await cliente.GetStringAsync(strLink);
+
+                    var lista = JsonConvert.DeserializeObject<List<CampeonatoModel>>(retorno);
+
+                    if (lista != null)
+                        lstCampeonatos = lista;
+
+                    cliente.Dispose();
+                }
+            }
+            catch (Exception excErro)
+            {
+                throw new Exception(excErro.Message);
+            }
+
+            return lstCampeonatos;
+        }
+
         public async Task<List<RodadaDTO>> CampeonatoRodadas(int idCampeonato)
         {
             List<RodadaDTO> lstRodadas = new List<RodadaDTO>();

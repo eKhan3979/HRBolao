@@ -495,10 +495,13 @@ namespace HRBolao.Regra
 
                 _vm.ListaApostas = new List<ApostaDTO>();
                 _vm.ListaCampeonatos = await (new CampeonatoServico()).CampeonatosDaEmpresa(_vm.Logado.IdEmpresa);
+                //_vm.ListaCampeonatos = await (new CampeonatoServico()).CampeonatosLista();
                 _vm.ListaPontuacao = await (new PontuacaoServico()).GetLista();
 
                 if (_vm.ListaCampeonatos.Count > 0)
                     _vm.CampeonatoSelecionado = _vm.ListaCampeonatos[0];
+                else
+                    throw new Exception("- A empresa (" + _vm.Logado.IdEmpresa + ") do jogador não possui campeonatos cadastrados !");
 
                 _vm.JogosVisible = true;
                 _vm.MeusPontosVisible = false;
@@ -511,6 +514,8 @@ namespace HRBolao.Regra
             {
                 _vm.ErroIndex = 1;
                 _vm.ErroMsg.AppendLine(excErro.Message);
+
+                throw excErro;
             }
 
             return (_vm.ErroIndex == 0);

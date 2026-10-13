@@ -62,8 +62,10 @@ public partial class cpgBolao : ContentPage
         }
         catch (Exception excErro)
         {
+            _ViewModel.Aguarde = false;
+
             await DisplayAlertAsync("Erro Inicialização", excErro.Message, "Fechar");
-        }
+        }       
 
         return boolOk;
     }
