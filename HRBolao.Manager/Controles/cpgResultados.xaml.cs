@@ -1,9 +1,9 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+
 using HRBolao.Model;
 using HRBolao.Regra;
 using HRBolao.ViewModel;
-
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core;
 
 namespace HRBolao.Manager.Controles;
 
@@ -83,8 +83,6 @@ public partial class cpgResultados : ContentPage
         {
             if (await _Regras.Gravar())
             {
-                await Toast.Make("- Resultado gravado !", ToastDuration.Long, 14).Show();
-
                 _ViewModel.JogoEdit = new JogoDTO()
                 {
                     GolsTimeCasa = 0,
@@ -98,6 +96,11 @@ public partial class cpgResultados : ContentPage
                 };
 
                 _ViewModel.VerJogo = false;
+
+                cmmCasa.Valor = 0;
+                cmmVisitante.Valor = 0;
+
+                await Toast.Make("- Resultado gravado !", ToastDuration.Long, 14).Show();
             }
         }
         catch (Exception excErro)
@@ -109,6 +112,9 @@ public partial class cpgResultados : ContentPage
     private void ibnPlacar_Clicked(object sender, EventArgs e)
     {
         _Regras.Editar((JogoDTO)((ImageButton)sender).BindingContext);
+
+        cmmCasa.SetValor(_ViewModel.JogoEdit.GolsTimeCasa);
+        cmmVisitante.SetValor(_ViewModel.JogoEdit.GolsTimeVisitante);
     }
 
     private async void pckCampeonatos_SelectedIndexChanged(object sender, EventArgs e)

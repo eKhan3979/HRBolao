@@ -62,6 +62,12 @@ public partial class cvwMaisMenos : ContentView
         set => SetValue(MinProperty, value);
     }
 
+    public void SetValor(int valor)
+    {
+        Valor = valor;
+        lblValor.Text = valor.ToString();
+    }
+
     public int Valor
     {
         get => (int)GetValue(ValorProperty);

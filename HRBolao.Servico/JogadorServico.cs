@@ -133,6 +133,8 @@ namespace HRBolao.Servico
 
                     if ((jogadores != null) && (jogadores.Count > 0))
                         jogador = jogadores[0];
+                    else
+                        jogador.email = email;
 
                     cliente.Dispose();
                 }
